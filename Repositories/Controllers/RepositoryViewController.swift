@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class ReposViewController: UIViewController {
+class RepositoryViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!{
         didSet{
@@ -17,6 +17,7 @@ class ReposViewController: UIViewController {
             tableView.dataSource = self
         }
     }
+    var presenter: RepositoryPresenter!
     
     var reposData = [ReposData]()
     
@@ -27,30 +28,35 @@ class ReposViewController: UIViewController {
     }
     
     func loadData() {
-        let url = URL(string: baseUrl)
-        AF.request(url!, headers: headers)
-            .responseJSON { response in
-                let results = response.data
-                do {
-                    self.reposData = try JSONDecoder().decode([ReposData].self, from: results!)
-                    self.tableView.reloadData()
-                } catch let error {
-                    print(error.localizedDescription)
-                    //TODO: Implement error handling
-                }
+        if let url = URL(string: baseUrl) {
+            AF.request(url, headers: headers)
+                .responseJSON { response in
+                    guard let results = response.data else {
+                        return
+                    }
+                    do {
+                        self.reposData = try JSONDecoder().decode([ReposData].self, from: results)
+                        self.tableView.reloadData()
+                    } catch let error {
+                        print(error.localizedDescription)
+                        //TODO: Implement error handling
+                    }
+            }
         }
     }
+    
+    
 }
+
 
 //MARK: - UITableViewDataSource, UITableViewDelegate
 
-extension ReposViewController: UITableViewDataSource, UITableViewDelegate {
+extension RepositoryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reposData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
         cell.textLabel?.text = reposData[indexPath.row].name.capitalized
         
@@ -58,11 +64,21 @@ extension ReposViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presentBranchesView(repositoryData: reposData[indexPath.row])
+    }
+    
+    func presentBranchesView (repositoryData: ReposData){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let branchesViewController = storyboard.instantiateViewController(withIdentifier: "BranchesViewController") as? BranchesViewController else {
             return
         }
-        branchesViewController.repositoryData = reposData[indexPath.row]
-        self.show(branchesViewController, sender: self)
+        
+        let presenter = BranchesPresenter(
+            repositoryName: repositoryData.name,
+            view: branchesViewController,
+            repositoryData: repositoryData
+        )
+        branchesViewController.presenter = presenter
+        navigationController?.show(branchesViewController, sender: nil)
     }
 }
