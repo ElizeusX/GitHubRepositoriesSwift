@@ -14,7 +14,7 @@ class CommitCell: UITableViewCell {
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     
-    func setLabel(commitData: CommitItem){
+    func setLabel(commitData: CommitData){
         messageLabel.text = commitData.commit.message
         nameLabel.text = commitData.commit.committer.name
         dateLabel.text = commitData.commit.author.date

@@ -11,67 +11,50 @@ import Alamofire
 
 class BranchesViewController: UIViewController {
     
-    @IBOutlet weak var branchTableView: UITableView!{
+    @IBOutlet private weak var tableView: UITableView!{
         didSet{
-            branchTableView.delegate = self
-            branchTableView.dataSource = self
+            tableView.delegate = self
+            tableView.dataSource = self
         }
     }
-    var branchData = [BranchData]()
-    var repositoryData: ReposData?
     
+    var presenter: BranchesPresenter!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        loadData()
-    }
 
-    
-    func loadData() {
-        guard let repositoryName = repositoryData?.name else {
-            return
-        }
-        let urlString = "\(detailsUrl)\(repositoryName)/branches"
-        if let url = URL(string: urlString) {
-            AF.request(url, headers: headers)
-                .responseJSON { response in
-                    let results = response.data
-                    do {
-                        self.branchData = try JSONDecoder().decode([BranchData].self, from: results!)
-                        self.branchTableView.reloadData()
-                    } catch let error {
-                        print(error.localizedDescription)
-                        //TODO: Implement error handling
-                    }
-            }
-        }
+        presenter.loadData()
     }
+    
+    func reloadData(){
+           tableView.reloadData()
+       }
     
     //MARK: - Send repositories name in CommitPresenter for CommitsViewController
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard  let commitsVC : CommitsViewController = segue.destination as? CommitsViewController
+        guard segue.identifier == "showCommits", let commitsVC : CommitsViewController = segue.destination as? CommitsViewController
             else {
                 return
         }
-        guard let repositoryName = repositoryData?.name else {
-            return
-        }
-        let url = "\(detailsUrl)\(repositoryName)/commits"
-        commitsVC.presenter = CommitPresenter(url: url, view: commitsVC)
+       
+        let repositoryName = presenter.repositoryName
+        commitsVC.presenter = CommitsPresenter(repositoryName: repositoryName, view: commitsVC)
     }
+    
 }
 
 
 //MARK: - UITableViewDataSource, UITableViewDelegate
 extension BranchesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return branchData.count
+        return presenter.branchCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let branchRow = presenter.cellItem(for: indexPath.row )
         let cell = tableView.dequeueReusableCell(withIdentifier: "BranchCell") as! BranchCell
-        cell.branchLabel.text = branchData[indexPath.row].name.capitalized
+        //cell.branchLabel.text = branchData[indexPath.row].name.capitalized
+        cell.branchLabel.text = branchRow.name.capitalized
         return cell
     }
 }

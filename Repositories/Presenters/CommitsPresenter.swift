@@ -9,40 +9,41 @@
 import Foundation
 import Alamofire
 
-class CommitPresenter {
-    let commitURL: String
-    init(url: String, view: CommitsViewController) {
-        commitURL = url
+class CommitsPresenter {
+    let repositoryName: String
+    init(repositoryName: String, view: CommitsViewController) {
+        self.repositoryName = repositoryName
         self.view = view
-        
     }
+    
     private weak var view: CommitsViewController?
-    var commits: [CommitItem] = []
+    var commitData: [CommitData] = []
     var commitCount: Int{
-        return commits.count
+        return commitData.count
     }
     
     func loadData() {
-         if let url = URL(string: commitURL) {
-             AF.request(url, headers: headers)
-             .responseJSON { [weak self]response in
-                 guard let jsonData = response.data else {
-                     print("No data")
-                     return
-                 }
-                 do {
-                     let commits = try JSONDecoder().decode([CommitItem].self, from: jsonData)
-                     self?.commits = Array(commits.prefix(10))
-                     self?.view?.reloadData()
-            
-                 } catch let error {
-                     print(error.localizedDescription)
-                     //TODO: Implement error handling
-                 }
-             }
-         }
-     }
-    func cellItem(for row: Int) -> CommitItem{
-        return commits[row]
+        let urlString = "\(detailsUrl)\(repositoryName)/commits"
+        if let url = URL(string: urlString) {
+            AF.request(url, headers: headers)
+                .responseJSON { [weak self]response in
+                    guard let jsonData = response.data else {
+                        print("No data")
+                        return
+                    }
+                    do {
+                        let commits = try JSONDecoder().decode([CommitData].self, from: jsonData)
+                        self?.commitData = Array(commits.prefix(10))
+                        self?.view?.reloadData()
+                        
+                    } catch let error {
+                        print(error.localizedDescription)
+                        //TODO: Implement error handling
+                    }
+            }
+        }
+    }
+    func cellItem(for row: Int) -> CommitData{
+        return commitData[row]
     }
 }

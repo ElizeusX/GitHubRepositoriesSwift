@@ -10,7 +10,7 @@
         <!--Repositories-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ReposViewController" customModule="Repositories" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RepositoryViewController" id="BYZ-38-t0r" customClass="RepositoryViewController" customModule="Repositories" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -38,7 +38,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="8Ar-pN-Afa" id="UlH-tN-9M9"/>
-                        <segue destination="kFU-3V-01f" kind="show" identifier="showDetails" id="ApH-tY-fqG"/>
+                        <segue destination="kFU-3V-01f" kind="show" identifier="showBranches" id="ApH-tY-fqG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -221,7 +221,7 @@
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="BJM-0p-kR9" kind="show" identifier="showDetailsCom" id="lRT-oH-kk2"/>
+                                                    <segue destination="BJM-0p-kR9" kind="show" identifier="showCommits" id="lRT-oH-kk2"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="git-commit" translatesAutoresizingMaskIntoConstraints="NO" id="H1S-Sk-doE">
@@ -248,7 +248,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Branches" id="kZL-ag-On5"/>
                     <connections>
-                        <outlet property="branchTableView" destination="tIF-sN-vLP" id="eoR-Sd-JZj"/>
+                        <outlet property="tableView" destination="tIF-sN-vLP" id="eoR-Sd-JZj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vDW-vF-tRL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -373,7 +373,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Commits" id="cHN-Cd-SQs"/>
                     <connections>
-                        <outlet property="commitTableView" destination="h8V-nf-qMC" id="VjR-iQ-4Kc"/>
+                        <outlet property="tableView" destination="h8V-nf-qMC" id="VjR-iQ-4Kc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r1y-RY-XNs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -383,7 +383,7 @@
         <!--Navigation Controller-->
         <scene sceneID="t5O-TS-nP6">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DJH-Zp-TJY" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RepositoryNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="DJH-Zp-TJY" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="CWn-Qj-frP">
@@ -406,7 +406,7 @@
     </scenes>
     <resources>
         <image name="git-branch" width="106.5" height="170.5"/>
-        <image name="git-commit" width="170.5" height="170.5"/>
+        <image name="git-commit" width="256" height="256"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

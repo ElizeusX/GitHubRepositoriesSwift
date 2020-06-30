@@ -11,14 +11,14 @@ import Alamofire
 
 class CommitsViewController: UIViewController {
     
-    @IBOutlet weak var commitTableView: UITableView!{
+    @IBOutlet private weak var tableView: UITableView!{
         didSet{
-            commitTableView.delegate = self
-            commitTableView.dataSource = self
+            tableView.delegate = self
+            tableView.dataSource = self
         }
     }
     
-    var presenter: CommitPresenter!
+    var presenter: CommitsPresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +30,9 @@ class CommitsViewController: UIViewController {
     @IBAction func branchesButton(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
     }
+    
     func reloadData(){
-        commitTableView.reloadData()
+        tableView.reloadData()
     }
 }
 

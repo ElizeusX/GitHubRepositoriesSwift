@@ -15,7 +15,7 @@ enum EncodingError: Error{
  
 
 // MARK: - Commit
-struct CommitItem: Decodable {
+struct CommitData: Decodable {
     let sha: String
     let nodeID: String
     let commit: Commit

@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2554D1ED2497EA2E00482202 /* BranchesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2554D1EC2497EA2E00482202 /* BranchesPresenter.swift */; };
+		2554D1EF249AAE9300482202 /* RepositoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2554D1EE249AAE9300482202 /* RepositoryPresenter.swift */; };
 		25C7C602248A949C003F7568 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C7C601248A949C003F7568 /* AppDelegate.swift */; };
-		25C7C604248A949C003F7568 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C7C603248A949C003F7568 /* SceneDelegate.swift */; };
-		25C7C606248A949C003F7568 /* ReposViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C7C605248A949C003F7568 /* ReposViewController.swift */; };
+		25C7C606248A949C003F7568 /* RepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C7C605248A949C003F7568 /* RepositoryViewController.swift */; };
 		25C7C609248A949C003F7568 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25C7C607248A949C003F7568 /* Main.storyboard */; };
 		25C7C60B248A949F003F7568 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25C7C60A248A949F003F7568 /* Assets.xcassets */; };
 		25C7C60E248A949F003F7568 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 25C7C60C248A949F003F7568 /* LaunchScreen.storyboard */; };
-		25C7C620248BC9F4003F7568 /* ReposData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C7C61F248BC9F4003F7568 /* ReposData.swift */; };
+		25C7C620248BC9F4003F7568 /* RepositoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C7C61F248BC9F4003F7568 /* RepositoryData.swift */; };
 		25C848C224926FDB00726F23 /* CommitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C848C124926FDB00726F23 /* CommitData.swift */; };
 		25C848C42492700300726F23 /* BranchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C848C32492700300726F23 /* BranchData.swift */; };
 		25C848C82493D92F00726F23 /* CommitsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C848C72493D92F00726F23 /* CommitsViewController.swift */; };
@@ -29,15 +30,16 @@
 
 /* Begin PBXFileReference section */
 		0027CD8CB5F6929216FBF719 /* Pods-Repositories.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Repositories.debug.xcconfig"; path = "Target Support Files/Pods-Repositories/Pods-Repositories.debug.xcconfig"; sourceTree = "<group>"; };
+		2554D1EC2497EA2E00482202 /* BranchesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchesPresenter.swift; sourceTree = "<group>"; };
+		2554D1EE249AAE9300482202 /* RepositoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryPresenter.swift; sourceTree = "<group>"; };
 		25C7C5FE248A949C003F7568 /* Repositories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Repositories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		25C7C601248A949C003F7568 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		25C7C603248A949C003F7568 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		25C7C605248A949C003F7568 /* ReposViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposViewController.swift; sourceTree = "<group>"; };
+		25C7C605248A949C003F7568 /* RepositoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryViewController.swift; sourceTree = "<group>"; };
 		25C7C608248A949C003F7568 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		25C7C60A248A949F003F7568 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		25C7C60D248A949F003F7568 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		25C7C60F248A949F003F7568 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		25C7C61F248BC9F4003F7568 /* ReposData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReposData.swift; sourceTree = "<group>"; };
+		25C7C61F248BC9F4003F7568 /* RepositoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryData.swift; sourceTree = "<group>"; };
 		25C848C124926FDB00726F23 /* CommitData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitData.swift; sourceTree = "<group>"; };
 		25C848C32492700300726F23 /* BranchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchData.swift; sourceTree = "<group>"; };
 		25C848C72493D92F00726F23 /* CommitsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommitsViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +88,6 @@
 			isa = PBXGroup;
 			children = (
 				25C7C601248A949C003F7568 /* AppDelegate.swift */,
-				25C7C603248A949C003F7568 /* SceneDelegate.swift */,
 				25C848D324955D4500726F23 /* ApiConstants.swift */,
 				25C84901249679D700726F23 /* Services */,
 				25C7C61C248BBDBC003F7568 /* Models */,
@@ -103,7 +104,7 @@
 		25C7C61A248BBD9B003F7568 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				25C7C605248A949C003F7568 /* ReposViewController.swift */,
+				25C7C605248A949C003F7568 /* RepositoryViewController.swift */,
 				25C848CB2493EEB500726F23 /* BranchesViewController.swift */,
 				25C848CD2493EF0D00726F23 /* BranchCell.swift */,
 				25C848C72493D92F00726F23 /* CommitsViewController.swift */,
@@ -116,7 +117,7 @@
 		25C7C61C248BBDBC003F7568 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				25C7C61F248BC9F4003F7568 /* ReposData.swift */,
+				25C7C61F248BC9F4003F7568 /* RepositoryData.swift */,
 				25C848C124926FDB00726F23 /* CommitData.swift */,
 				25C848C32492700300726F23 /* BranchData.swift */,
 			);
@@ -142,6 +143,8 @@
 		25C8490224967C4D00726F23 /* Presenters */ = {
 			isa = PBXGroup;
 			children = (
+				2554D1EE249AAE9300482202 /* RepositoryPresenter.swift */,
+				2554D1EC2497EA2E00482202 /* BranchesPresenter.swift */,
 				25C8490324967C8200726F23 /* CommitsPresenter.swift */,
 			);
 			path = Presenters;
@@ -280,19 +283,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				25C84900249679BF00726F23 /* DateService.swift in Sources */,
+				2554D1ED2497EA2E00482202 /* BranchesPresenter.swift in Sources */,
 				25C848D424955D4500726F23 /* ApiConstants.swift in Sources */,
 				25C848CC2493EEB500726F23 /* BranchesViewController.swift in Sources */,
 				25C848C82493D92F00726F23 /* CommitsViewController.swift in Sources */,
-				25C7C606248A949C003F7568 /* ReposViewController.swift in Sources */,
+				25C7C606248A949C003F7568 /* RepositoryViewController.swift in Sources */,
 				25C8490424967C8200726F23 /* CommitsPresenter.swift in Sources */,
 				25C7C602248A949C003F7568 /* AppDelegate.swift in Sources */,
-				25C7C604248A949C003F7568 /* SceneDelegate.swift in Sources */,
 				25C848C42492700300726F23 /* BranchData.swift in Sources */,
 				25C848CE2493EF0D00726F23 /* BranchCell.swift in Sources */,
 				25C848C224926FDB00726F23 /* CommitData.swift in Sources */,
+				2554D1EF249AAE9300482202 /* RepositoryPresenter.swift in Sources */,
 				25C848FE24962DD600726F23 /* AboutApp.swift in Sources */,
 				25C848D2249557D500726F23 /* CommitCell.swift in Sources */,
-				25C7C620248BC9F4003F7568 /* ReposData.swift in Sources */,
+				25C7C620248BC9F4003F7568 /* RepositoryData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

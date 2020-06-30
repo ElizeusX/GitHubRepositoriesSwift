@@ -11,7 +11,7 @@ import Alamofire
 
 class RepositoryViewController: UIViewController {
     
-    @IBOutlet var tableView: UITableView!{
+    @IBOutlet private var tableView: UITableView!{
         didSet{
             tableView.delegate = self
             tableView.dataSource = self
@@ -19,31 +19,35 @@ class RepositoryViewController: UIViewController {
     }
     var presenter: RepositoryPresenter!
     
-    var reposData = [ReposData]()
+    //var repositoryData = [RepositoryData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadData()
+            presenter.loadData()
     }
     
-    func loadData() {
-        if let url = URL(string: baseUrl) {
-            AF.request(url, headers: headers)
-                .responseJSON { response in
-                    guard let results = response.data else {
-                        return
-                    }
-                    do {
-                        self.reposData = try JSONDecoder().decode([ReposData].self, from: results)
-                        self.tableView.reloadData()
-                    } catch let error {
-                        print(error.localizedDescription)
-                        //TODO: Implement error handling
-                    }
-            }
-        }
+    func reloadData(){
+        tableView.reloadData()
     }
+    
+//    func loadData() {
+//        if let url = URL(string: baseUrl) {
+//            AF.request(url, headers: headers)
+//                .responseJSON { response in
+//                    guard let results = response.data else {
+//                        return
+//                    }
+//                    do {
+//                        self.repositoryData = try JSONDecoder().decode([RepositoryData].self, from: results)
+//                        self.tableView.reloadData()
+//                    } catch let error {
+//                        print(error.localizedDescription)
+//                        //TODO: Implement error handling
+//                    }
+//            }
+//        }
+//    }
     
     
 }
@@ -53,21 +57,25 @@ class RepositoryViewController: UIViewController {
 
 extension RepositoryViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return reposData.count
+        return presenter.repositoryCount
+        //return repositoryData.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let repositoryRow = presenter.cellItem(for: indexPath.row)
         let cell = UITableViewCell(style: .default, reuseIdentifier: nil)
-        cell.textLabel?.text = reposData[indexPath.row].name.capitalized
+        cell.textLabel?.text = repositoryRow.name.capitalized
+        //cell.textLabel?.text = repositoryData[indexPath.row].name.capitalized
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presentBranchesView(repositoryData: reposData[indexPath.row])
+        presentBranchesView(repositoryData: presenter.cellItem(for: indexPath.row))
+//        presentBranchesView(repositoryData: repositoryData[indexPath.row])
     }
     
-    func presentBranchesView (repositoryData: ReposData){
+    func presentBranchesView (repositoryData: RepositoryData){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let branchesViewController = storyboard.instantiateViewController(withIdentifier: "BranchesViewController") as? BranchesViewController else {
             return
@@ -75,8 +83,8 @@ extension RepositoryViewController: UITableViewDataSource, UITableViewDelegate {
         
         let presenter = BranchesPresenter(
             repositoryName: repositoryData.name,
-            view: branchesViewController,
-            repositoryData: repositoryData
+            view: branchesViewController
+            
         )
         branchesViewController.presenter = presenter
         navigationController?.show(branchesViewController, sender: nil)
